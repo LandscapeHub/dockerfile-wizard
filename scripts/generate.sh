@@ -4,8 +4,6 @@ echo "FROM buildpack-deps:$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 
 echo "RUN apt-get update"
 
-$ sudo apt-get update
-
 # Get Docker
 # Update the apt package index and install packages to allow apt to use a repository over HTTPS:
 echo "RUN apt-get install \
