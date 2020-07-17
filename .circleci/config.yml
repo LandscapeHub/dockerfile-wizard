@@ -32,8 +32,9 @@ image_config: &image_config
 version: 2
 jobs:
   build:
-    docker:
-      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
+    machine: true
+#    docker:
+#      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
     environment:
       <<: *image_config
 
