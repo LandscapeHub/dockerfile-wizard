@@ -35,6 +35,7 @@ jobs:
     machine: true
     environment:
       <<: *image_config
+      TZ: "America/Chicago"
 
     steps:
       - checkout
@@ -55,6 +56,7 @@ jobs:
       - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
         environment:
           <<: *image_config
+          TZ: "America/Chicago"
 
     steps:
       - checkout
