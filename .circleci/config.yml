@@ -19,19 +19,20 @@ image_config: &image_config
 
   NODE_VERSION_NUM: 14.5.0
 
-  JAVA: "false"
+  JAVA: false
 
-  MYSQL_CLIENT: "false"
+  MYSQL_CLIENT: false
 
-  POSTGRES_CLIENT: "false"
+  POSTGRES_CLIENT: false
 
-  DOCKERIZE: "false"
+  DOCKERIZE: false
 
-  BROWSERS: "false"
+  BROWSERS: false
 
 version: 2
 jobs:
   build:
+    machine: true
     docker:
       - image: $DOCKER_USERNAME/landscapehub-ruby-node:2.6.5-node-lts-14.5
     environment:
