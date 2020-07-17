@@ -31,9 +31,6 @@ image_config: &image_config
 
 version: 2
 jobs:
-  machine:
-    enabled: true
-    services: docker
   build:
     docker:
       - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
