@@ -32,9 +32,11 @@ image_config: &image_config
 version: 2
 jobs:
   build:
-    machine: true
+    machine:
+      enabled: true
+      services: docker
     docker:
-      - image: $DOCKER_USERNAME/landscapehub-ruby-node:2.6.5-node-lts-14.5
+      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
     environment:
       <<: *image_config
 
@@ -55,7 +57,7 @@ jobs:
 
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/landscapehub-ruby-node:2.6.5-node-lts-14.5
+      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
         environment:
           <<: *image_config
 
