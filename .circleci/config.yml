@@ -33,15 +33,12 @@ version: 2
 jobs:
   build:
     machine: true
-#    docker:
-#      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
     environment:
       <<: *image_config
 
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
+
       - run: bash scripts/generate.sh > Dockerfile
 
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -61,6 +58,11 @@ jobs:
 
     steps:
       - checkout
+
+      - run:
+          name: start Xvfb for phantomjs test
+          # # command: Xvfb :99
+          # # background: true
 
       - run:
           name: bats tests
