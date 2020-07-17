@@ -31,10 +31,10 @@ image_config: &image_config
 
 version: 2
 jobs:
+  machine:
+    enabled: true
+    services: docker
   build:
-    machine:
-      enabled: true
-      services: docker
     docker:
       - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
     environment:
