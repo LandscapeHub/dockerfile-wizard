@@ -4,27 +4,10 @@ echo "FROM buildpack-deps:$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 
 echo "RUN apt-get update"
 
-# Get Docker
-# Update the apt package index and install packages to allow apt to use a repository over HTTPS:
-echo "RUN apt-get install \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      gnupg-agent \
-      software-properties-common"
-# Add Docker’s official GPG key:
-echo :"RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
-# Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88,
-# by searching for the last 8 characters of the fingerprint.
-echo "RUN apt-key fingerprint 0EBFCD88"
-# Use the following command to set up the stable repository.
-echo "RUN sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\""
-# Update the apt package index, and install the latest version of Docker Engine and containerd
-echo "RUN sudo apt-get update"
-echo "RUN sudo apt-get install docker-ce docker-ce-cli containerd.io"
-
 if [ ! -e $RUBY_VERSION_NUM ] ; then
     echo "RUN apt-get install -y libssl-dev && wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
+    tar -xzvf ruby-$RUBY_VERSION_NUM.tar.gz && \
+    cd ruby-$RUBY_VERSION_NUM/ && \
     ./configure && \
     make -j4 && \
     make install && \
