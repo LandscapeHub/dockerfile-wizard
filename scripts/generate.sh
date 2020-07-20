@@ -26,6 +26,10 @@ if [ ! -e $NODE_VERSION_NUM ] ; then
     rm -r node-v$NODE_VERSION_NUM"
 fi
 
+# Install Yarn
+echo "RUN npm install -g yarn@1.13.0"
+echo "ENV PATH \"$PATH:/root/.yarn/bin/:/usr/local/bin\""
+
 if [ ! -e $PYTHON_VERSION_NUM ] ; then
     echo "RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION_NUM/Python-$PYTHON_VERSION_NUM.tgz && \
     tar xzf Python-$PYTHON_VERSION_NUM.tgz && \
