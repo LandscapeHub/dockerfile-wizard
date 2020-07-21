@@ -30,6 +30,13 @@ fi
 echo "RUN npm install -g yarn@1.13.0"
 echo "ENV PATH \"$PATH:/root/.yarn/bin/:/usr/local/bin\""
 
+#Install sudo
+echo "RUN apt-get update && \
+      apt-get -y install sudo"
+echo "RUN useradd -m docker && echo \"docker:docker\" | chpasswd && adduser docker sudo"
+echo "USER docker"
+echo "CMD /bin/bash"
+
 if [ ! -e $PYTHON_VERSION_NUM ] ; then
     echo "RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION_NUM/Python-$PYTHON_VERSION_NUM.tgz && \
     tar xzf Python-$PYTHON_VERSION_NUM.tgz && \
